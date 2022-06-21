@@ -39,6 +39,7 @@ class MemoResource(Resource) :
 
             i = 0
             for record in result_list :
+                result_list[i]['date'] = record['date'].isoformat()
                 result_list[i]['created_at'] = record['created_at'].isoformat()
                 result_list[i]['updated_at'] = record['updated_at'].isoformat()
                 i = i + 1
@@ -86,9 +87,9 @@ class MemoResource(Resource) :
 
             result_list = cursor.fetchall()
 
-            recipe = result_list[0]
+            memo = result_list[0]
 
-            if recipe['user_id'] != user_id :
+            if memo['user_id'] != user_id :
                 cursor.close()
                 connection.close()
                 return {'error' : '다른 이용자의 레시피를 수정할 수 없습니다.'}, 401 
@@ -133,7 +134,7 @@ class MemoResource(Resource) :
             connection = get_connection()
 
             # 2. 쿼리문 만들기
-            query = '''delete from recipe
+            query = '''delete from memo
                     where id = %s;'''
 
             record = (memo_id, )
