@@ -12,7 +12,7 @@ import mysql.connector
 ### API를 만들기 위한 클래스는, flask_restful 라이브러리의
 ### Resource 클래스를 상속해서 만들어야 한다.
 
-class MemoListResource(Resource) :
+class MemoResource(Resource) :
     # restful api 의 method 에 해당하는 함수 작성
 
     # 이 함수를 실행하려면 jwt 토큰이 꼭 필요하다.
